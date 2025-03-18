@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora Matemática Avanzada</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 24px;
+            color: #4CAF50;
+            margin-bottom: 20px;
+        }
+
+        input[type="number"], input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        select {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .result {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .error {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Calculadora de Operaciones</h1>
+
+        <input type="text" id="expression" placeholder="Escribe una operación (ej: 3+5*2)">
+        
+        <button onclick="calculate()">Calcular</button>
+
+        <div id="result" class="result"></div>
+    </div>
+
+    <script>
+        function calculate() {
+            const expression = document.getElementById('expression').value;
+            const resultDiv = document.getElementById('result');
+
+            // Validación de que la expresión no esté vacía
+            if (!expression) {
+                resultDiv.innerHTML = '<span class="error">Por favor ingrese una expresión.</span>';
+                return;
+            }
+
+            try {
+                // Usamos eval() para evaluar la expresión, respetando las jerarquías matemáticas
+                const result = eval(expression);
+                resultDiv.innerHTML = `Resultado: ${result}`;
+            } catch (error) {
+                // En caso de un error en la expresión, mostramos un mensaje de error
+                resultDiv.innerHTML = '<span class="error">Expresión inválida. Asegúrese de usar una sintaxis correcta.</span>';
+            }
+        }
+    </script>
+
+</body>
+</html>
